@@ -1,4 +1,4 @@
-import { ShieldCheck, Mail, MessageCircle, Send } from 'lucide-react';
+import { Phone, MessageCircle, Send, Radio } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -7,9 +7,11 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
-              <span className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-mint-500 text-white">
-                <ShieldCheck className="h-5 w-5" strokeWidth={2.4} />
-              </span>
+              <img
+                src="/IMG-20260827-WA0011(1).jpg"
+                alt="SAFE LOGS logo"
+                className="h-11 w-11 rounded-xl object-cover"
+              />
               <span className="text-lg font-extrabold tracking-tight text-white">
                 SAFE<span className="text-mint-400"> LOGS</span>
               </span>
@@ -37,15 +39,20 @@ export default function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
               Get in touch
             </h4>
-            <ul className="mt-4 space-y-2.5 text-sm">
-              <li className="flex items-center gap-2 text-slate-300">
-                <Mail className="h-4 w-4 text-brand-400" /> support@safelogs.io
+            <ul className="mt-4 space-y-3 text-sm">
+              <li className="flex items-start gap-2 text-slate-300">
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
+                <a href="tel:+2347075202707" className="hover:text-white">Live chat, +2347075202707</a>
               </li>
-              <li className="flex items-center gap-2 text-slate-300">
-                <MessageCircle className="h-4 w-4 text-brand-400" /> Live chat, 24/7
+              <li className="flex items-start gap-2 text-slate-300">
+                <MessageCircle className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
+                <span>Telegram<br />customer support @safelogs_support</span>
               </li>
-              <li className="flex items-center gap-2 text-slate-300">
-                <Send className="h-4 w-4 text-brand-400" /> @safelogs official
+              <li className="flex items-start gap-2 text-slate-300">
+                <Radio className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" />
+                <a href="https://t.me/+agfRYCwTEroxZjQ0" target="_blank" rel="noreferrer" className="break-words hover:text-white">
+                  Get updates https://t.me/+agfRYCwTEroxZjQ0
+                </a>
               </li>
             </ul>
           </div>

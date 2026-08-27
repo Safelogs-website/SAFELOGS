@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ShieldCheck, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const links = [
   { label: 'Marketplace', href: '#marketplace' },
@@ -29,9 +29,11 @@ export default function Navbar() {
     >
       <nav className="container-page flex h-16 items-center justify-between sm:h-20">
         <a href="#top" className="group flex items-center gap-2.5">
-          <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-brand-500 to-mint-500 text-white shadow-glow">
-            <ShieldCheck className="h-5 w-5" strokeWidth={2.4} />
-          </span>
+          <img
+            src="/IMG-20260827-WA0011(1).jpg"
+            alt="SAFE LOGS logo"
+            className="h-10 w-10 rounded-xl object-cover shadow-glow"
+          />
           <span className="text-lg font-extrabold tracking-tight text-white">
             SAFE<span className="text-mint-400"> LOGS</span>
           </span>

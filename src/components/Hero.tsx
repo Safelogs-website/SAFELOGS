@@ -96,27 +96,19 @@ export default function Hero() {
     }
     setError('');
 
-    const phone = '2347075202707';
-    const formattedGender = gender.charAt(0).toUpperCase() + gender.slice(1);
-    const formattedType = type === 'dating' ? 'Dating account' : 'Non-dating account';
+    // Format the order details for the WhatsApp message
+    const accountTypeStr = isNonDating 
+      ? `Non-dating (${countryOption?.label})` 
+      : 'Dating';
+      
+    const message = `Hello SAFE LOGS, I would like to place an order:\n\n*Year:* ${year}\n*Gender:* ${gender}\n*Type:* ${accountTypeStr}\n*Quantity:* ${qty}\n*Total Price:* ${formatNaira(total)}\n\nPlease confirm payment details.`;
     
-    let message = `Hello! I want to order a Facebook Account:%0A` +
-      `• Year: ${year}%0A` +
-      `• Gender: ${formattedGender}%0A` +
-      `• Type: ${formattedType}%0A`;
-
-    if (isNonDating && countryOption) {
-      message += `• Country: ${countryOption.label}%0A`;
-    }
-
-    message += `• Quantity: ${qty}%0A` +
-      `• Total Price: ${formatNaira(total)}`;
-
-    const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
-    setGenerated(whatsappUrl);
+    // Generate the wa.me link with the provided number (without the +)
+    const encodedMessage = encodeURIComponent(message);
+    const link = `https://wa.me/2347075202707?text=${encodedMessage}`;
+    
+    setGenerated(link);
     setCopied(false);
-
-    window.open(whatsappUrl, '_blank');
   };
 
   const handleCopy = async () => {
@@ -149,8 +141,8 @@ export default function Hero() {
           <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-300 sm:text-lg">
             SAFE LOGS has been your vendors vendor for 11 years — connecting buyers with
             vetted vendors offering aged, authentic Facebook accounts. Filter by year,
-            gender, and account type, then generate a direct WhatsApp message to complete your
-            purchase.
+            gender, and account type, then generate a secure order link to complete your
+            purchase on WhatsApp.
           </p>
 
           <div className="mt-6 inline-flex items-center gap-2 rounded-xl border border-mint-400/30 bg-mint-500/10 px-4 py-2.5 text-sm font-semibold text-mint-200">
@@ -169,7 +161,7 @@ export default function Hero() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a href="#marketplace" className="btn-primary">
-              Order on WhatsApp
+              Generate WhatsApp link
               <ArrowRight className="h-4 w-4" />
             </a>
             <a href="#how" className="btn-ghost">
@@ -184,13 +176,13 @@ export default function Hero() {
             <div className="absolute -right-3 -top-3 hidden sm:block">
               <span className="chip border-mint-400/30 bg-mint-500/10 text-mint-300">
                 <Sparkles className="h-3.5 w-3.5" />
-                Vendor generator
+                Order generator
               </span>
             </div>
 
             <h2 className="text-xl font-bold text-white sm:text-2xl">Build your order link</h2>
             <p className="mt-1.5 text-sm text-slate-400">
-              Pick your filters to generate a direct WhatsApp order message for the vendor.
+              Pick your filters and we'll generate a secure, pre-filled WhatsApp link to complete your order.
             </p>
 
             <div className="mt-6 grid gap-4">
@@ -316,14 +308,24 @@ export default function Hero() {
               className="btn-primary mt-5 w-full"
             >
               <Link2 className="h-4 w-4" />
-              Order on WhatsApp
+              Generate WhatsApp link
             </button>
 
             {generated && (
               <div className="mt-5 animate-fade-up rounded-xl border border-mint-400/20 bg-mint-500/5 p-4">
-                <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-mint-300">
-                  <CheckCircle2 className="h-4 w-4" />
-                  WhatsApp order link ready
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-mint-300">
+                    <CheckCircle2 className="h-4 w-4" />
+                    Your WhatsApp link is ready
+                  </div>
+                  <a 
+                    href={generated} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="text-xs font-semibold text-brand-400 hover:text-brand-300 underline"
+                  >
+                    Open directly
+                  </a>
                 </div>
                 <div className="mt-2.5 flex items-center gap-2">
                   <code className="flex-1 truncate rounded-lg bg-ink-900/80 px-3 py-2.5 font-mono text-xs text-mint-200">
@@ -342,7 +344,7 @@ export default function Hero() {
                   </button>
                 </div>
                 <p className="mt-2 text-xs text-slate-400">
-                  Opening WhatsApp... If it doesn't open automatically, click or copy the link above.
+                  Copy this link or click "Open directly" to send your pre-filled order on WhatsApp.
                 </p>
               </div>
             )}
