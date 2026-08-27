@@ -103,12 +103,15 @@ export default function Hero() {
       
     const message = `Hello SAFE LOGS, I would like to place an order:\n\n*Year:* ${year}\n*Gender:* ${gender}\n*Type:* ${accountTypeStr}\n*Quantity:* ${qty}\n*Total Price:* ${formatNaira(total)}\n\nPlease confirm payment details.`;
     
-    // Generate the wa.me link with the provided number (without the +)
+    // Generate the api.whatsapp link (more robust for mobile/desktop redirects than wa.me)
     const encodedMessage = encodeURIComponent(message);
-    const link = `https://wa.me/2347075202707?text=${encodedMessage}`;
+    const link = `https://api.whatsapp.com/send?phone=2347075202707&text=${encodedMessage}`;
     
     setGenerated(link);
     setCopied(false);
+
+    // Automatically open WhatsApp in a new tab when the user clicks the button
+    window.open(link, '_blank', 'noopener,noreferrer');
   };
 
   const handleCopy = async () => {
@@ -308,7 +311,7 @@ export default function Hero() {
               className="btn-primary mt-5 w-full"
             >
               <Link2 className="h-4 w-4" />
-              Generate WhatsApp link
+              Order on WhatsApp
             </button>
 
             {generated && (
